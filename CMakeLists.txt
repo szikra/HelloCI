@@ -11,7 +11,7 @@ target_include_directories(HelloCI_C PUBLIC include)
 #target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_COMPILE)
 #target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_LINK)
 #target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_RUN)
-target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_TEST)
+#target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_TEST)
 
 
 # enable testing functionality
