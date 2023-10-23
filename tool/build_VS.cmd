@@ -1,7 +1,10 @@
 cd ..
 mkdir build
 cd build
-cmake ..
+mkdir cmsvc
+cd cmsvc
+
+cmake ../..
 cmake --build . --config Debug
 ctest -C Debug -T Test -T Coverage
 rem ctest -C Debug -T Test

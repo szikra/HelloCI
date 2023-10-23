@@ -1,6 +1,8 @@
 cd ..
 mkdir build
 cd build
+mkdir cclang
+cd cclang
 
 @SetLocal EnableDelayedExpansion
 @echo off
@@ -26,7 +28,7 @@ echo   :( Coverage command was NOT found
 :found
 @echo on
 
-cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="--coverage -O0" "-DCOVERAGE_COMMAND=%llvmcov%" "-DCOVERAGE_EXTRA_FLAGS=gcov -l"
+cmake ../.. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="--coverage -O0" "-DCOVERAGE_COMMAND=%llvmcov%" "-DCOVERAGE_EXTRA_FLAGS=gcov -l"
 cmake --build .
 ctest -T Test -T Coverage
 
