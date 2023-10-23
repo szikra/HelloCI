@@ -12,7 +12,10 @@ target_include_directories(HelloCI_C PUBLIC include)
 #target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_LINK)
 #target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_RUN)
 #target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_TEST)
+target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_COVER)
 
+
+include(CTest)
 
 # enable testing functionality
 enable_testing()
@@ -22,3 +25,4 @@ add_test(
   NAME HelloCI_C
   COMMAND $<TARGET_FILE:HelloCI_C>
   )
+
