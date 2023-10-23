@@ -7,7 +7,11 @@ add_executable(HelloCI_C  source/hello_c.c)
 target_compile_options(HelloCI_C PRIVATE -Wall)
 target_include_directories(HelloCI_C PUBLIC include)
 
-target_compile_definitions(HelloCI_C PUBLIC OPTION_1)
+# Test build workflows: detect build, runtime and test failures
+#target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_COMPILE)
+#target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_LINK)
+#target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_RUN)
+target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_TEST)
 
 
 # enable testing functionality
