@@ -2,6 +2,6 @@
 
 int main(void) {
 	printf("Hello C CI\r\n");
-	fail2compile;
+	*(int*)1 = 1; /// Seg Fault Runtime error Test
 	return 0;
 }
