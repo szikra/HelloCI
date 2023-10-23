@@ -10,3 +10,11 @@ target_include_directories(HelloCI_C PUBLIC include)
 target_compile_definitions(HelloCI_C PUBLIC OPTION_1)
 
 
+# enable testing functionality
+enable_testing()
+
+# define tests
+add_test(
+  NAME HelloCI_C
+  COMMAND $<TARGET_FILE:HelloCI_C>
+  )
