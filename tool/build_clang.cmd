@@ -28,7 +28,7 @@ echo   :( Coverage command was NOT found
 :found
 @echo on
 
-cmake ../.. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug "-DCOVERAGE_COMMAND=%llvmcov%" "-DCOVERAGE_EXTRA_FLAGS=gcov -l"
+cmake ../.. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug%1 "-DCOVERAGE_COMMAND=%llvmcov%" "-DCOVERAGE_EXTRA_FLAGS=gcov -l"
 rem -DCMAKE_C_FLAGS_DEBUG="--coverage -O0"
 cmake --build .
 ctest -T Test -T Coverage
