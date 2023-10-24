@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.5)
 
 project (HelloCI_C C)
+project (HelloCI_Cpp CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 # cmake info
@@ -19,9 +20,11 @@ message("CMAKE_C_FLAGS_RELEASE = ${CMAKE_C_FLAGS_RELEASE}")
 if (CMAKE_C_COMPILER_ID STREQUAL "Clang")
   # using Clang
   set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 elseif (CMAKE_C_COMPILER_ID STREQUAL "GNU")
   # using GCC
   set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O1")
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O1")
 elseif (CMAKE_C_COMPILER_ID STREQUAL "MSVC")
   # using Visual Studio C++
 endif()
@@ -63,6 +66,8 @@ target_include_directories(HelloCI_C PUBLIC include)
 target_compile_definitions(HelloCI_C PUBLIC TEST_FAIL_TO_COVER)
 
 
+add_executable(HelloCI_Cpp  source/HelloCpp.cpp)
+
 
 # enable testing functionality
 include(CTest)
@@ -74,3 +79,7 @@ add_test(
   COMMAND $<TARGET_FILE:HelloCI_C>
   )
 
+add_test(
+  NAME HelloCI_Cpp
+  COMMAND $<TARGET_FILE:HelloCI_Cpp>
+  )
