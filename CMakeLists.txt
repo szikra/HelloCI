@@ -31,12 +31,12 @@ endif()
 
 # https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-describe-the-system
 if(MSVC)
-    # warning level 4
-    add_compile_options(/W4)
+	# warning level 4
+	add_compile_options(/W4)
 else()
-    # additional warnings
-    add_compile_options(-Wall -Wextra --coverage)
-    add_link_options(--coverage)
+	# additional warnings
+	add_compile_options(-Wall -Wextra --coverage)
+	add_link_options(--coverage)
 
 	#message("CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 	if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
@@ -45,12 +45,16 @@ else()
 	else()
 		message("Configuring for Release build")
 	    #add_compile_options(-O2)
-
-		if ( (CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_HOST_LINUX) )
-	  		# clang doesn't support -pg on Windows, only add profiling if using GCC or Linux
-		    add_compile_options(-pg -no-pie)
-	    	add_link_options(-pg)
-		endif()
+	endif()
+	if ( (CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_HOST_LINUX) )
+		# clang doesn't support -pg on Windows, only add profiling if using GCC or Linux
+		add_compile_options(-pg)
+		add_link_options(-pg)
+	endif()
+	if ( (CMAKE_CXX_COMPILER_ID STREQUAL "GNU") AND (CMAKE_HOST_WIN32) )
+		# on Windows -pg doesn't output data without -no-pie, only GCC supports -no-pie
+		add_compile_options(-no-pie)
+		add_link_options(-no-pie)
 	endif()
 endif()
 
