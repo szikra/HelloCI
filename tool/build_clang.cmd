@@ -1,8 +1,9 @@
-cd ..
-mkdir build
-cd build
-mkdir cclang
-cd cclang
+@echo off
+@echo Usage: %~n0 [Release]
+@rem default is Debug build, if called with any argument build Release
+set config=Debug
+if "x%~1" NEQ "x" set config=Release
+
 
 @SetLocal EnableDelayedExpansion
 @echo off
@@ -26,10 +27,13 @@ for /f "tokens=*" %%I in ('where llvm-cov') do (
 )
 echo   :( Coverage command was NOT found
 :found
-@echo on
+rem @echo on
 
-cmake ../.. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug%1 "-DCOVERAGE_COMMAND=%llvmcov%" "-DCOVERAGE_EXTRA_FLAGS=gcov -l"
-rem -DCMAKE_C_FLAGS_DEBUG="--coverage -O0"
+
+mkdir ..\build\cclang
+cd ..\build\cclang
+
+cmake ../.. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%config% "-DCOVERAGE_COMMAND=%llvmcov%" "-DCOVERAGE_EXTRA_FLAGS=gcov -l"
 cmake --build .
 ctest -T Test -T Coverage
 
