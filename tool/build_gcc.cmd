@@ -12,3 +12,8 @@ cmake ../.. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%config%
 @rem -DCMAKE_C_FLAGS_DEBUG="--coverage -O0"
 cmake --build .
 ctest -T Test -T Coverage
+
+@rem Profiling
+@rem have to run it again for some reason
+HelloCI_C.exe
+gprof HelloCI_C.exe gmon.out > analysis.txt

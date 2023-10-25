@@ -9,13 +9,19 @@ void unused_function(void) {
 
 void partly_used_function(int i) {
 	if (i) {
-		printf("Path 1\r\n");	
+		printf("Path 1\r\n");
 	} else {
 		printf("Path 0\r\n");	
 	}
 }
 #endif
 
+void hotspot(void) {
+	long long res = 0;
+	int i = 0;
+	for(;i<0x3fffffff;i++) res += i*i;
+	printf("\n Res: %lld \n", res);	
+}
 
 int main(void) {
 	printf("Hello C CI\r\n");
@@ -40,6 +46,10 @@ int main(void) {
 		printf("Reachable\r\n");	
 	}
 	partly_used_function(2);
+#endif
+
+#ifdef TEST_PROFILING
+	hotspot();
 #endif
 
 #ifdef TEST_FAIL_TO_TEST
