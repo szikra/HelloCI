@@ -4,9 +4,9 @@ name: CMake on a single platform
 
 on:
   push:
-    branches: [ "c" ]
+    branches: [ "c", "cpp" ]
   pull_request:
-    branches: [ "c" ]
+    branches: [ "c", "cpp" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
